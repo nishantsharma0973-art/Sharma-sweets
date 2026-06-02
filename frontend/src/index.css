@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+    background-color: #FDFBF7;
+    color: #2C2C2C;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+::selection { background: #800000; color: #FDFBF7; }
+
+@layer base {
+    :root {
+        --background: 40 47% 98%;
+        --foreground: 0 0% 17%;
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 17%;
+        --popover: 40 47% 98%;
+        --popover-foreground: 0 0% 17%;
+        --primary: 30 100% 45%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 0 100% 25%;
+        --secondary-foreground: 40 47% 98%;
+        --muted: 40 25% 94%;
+        --muted-foreground: 0 0% 48%;
+        --accent: 46 65% 52%;
+        --accent-foreground: 0 0% 17%;
+        --destructive: 0 75% 42%;
+        --destructive-foreground: 40 47% 98%;
+        --border: 40 18% 87%;
+        --input: 40 18% 87%;
+        --ring: 30 100% 45%;
+        --radius: 0.5rem;
+    }
+}
+
+@layer base {
+    * { @apply border-border; }
+    body { @apply bg-background text-foreground; }
+}
+
+/* Premium utilities */
+.section-pad { @apply py-20 md:py-28; }
+.container-x { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+
+.btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-saffron text-white hover:bg-maroon px-8 py-3 font-medium uppercase tracking-widest text-xs transition-colors duration-300;
+}
+.btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 border border-maroon text-maroon hover:bg-maroon hover:text-cream px-8 py-3 font-medium uppercase tracking-widest text-xs transition-colors duration-300;
+}
+.btn-ghost {
+    @apply inline-flex items-center gap-2 text-maroon hover:text-saffron px-2 py-2 text-sm uppercase tracking-widest font-medium transition-colors;
+}
+
+.eyebrow {
+    @apply text-xs tracking-[0.25em] uppercase text-maroon font-medium;
+}
+.divider-gold {
+    width: 56px; height: 1px; background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+}
+
+.hover-lift { transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s; }
+.hover-lift:hover { transform: translateY(-4px); }
+
+.glass-nav {
+    background: rgba(253, 251, 247, 0.78);
+    backdrop-filter: saturate(160%) blur(18px);
+    -webkit-backdrop-filter: saturate(160%) blur(18px);
+}
+
+.grain {
+    position: relative;
+}
+.grain::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .06;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.fade-up-on-mount { animation: fade-up .7s ease-out both; }
+
+@keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.shimmer-line {
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,.5), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer { 0%{background-position:-200% 0;} 100%{background-position:200% 0;} }
+
+/* Marquee */
+.marquee {
+    display: flex; gap: 3rem; animation: marquee 30s linear infinite;
+}
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* hide scrollbar but allow scroll */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
